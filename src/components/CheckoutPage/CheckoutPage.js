@@ -75,9 +75,9 @@ const CheckoutPage = () => {
                             {errors.paymentMethod && <span className="text-danger">Please select a payment method.</span>}
                         </div>
 
-                        {
-                            paymentMethod
-                        }
+                        {/* {
+                            paymentMethod === 'stripe' &&
+                        } */}
 
 
 

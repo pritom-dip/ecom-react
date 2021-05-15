@@ -1,17 +1,20 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { FaTrashAlt } from "react-icons/fa";
 import { removeFromCart } from '../../store/actions/cartActions';
+import swal from 'sweetalert';
 
-const SidebarCart = ({ active, setActive }) => {
-    const carts = useSelector(state => state.cart);
+const SidebarCart = ({ carts, active, setActive }) => {
+
     const subtotal = carts.reduce((initial, element) => {
         return initial + (parseFloat(element.price) * parseInt(element.quantity));
     }, 0);
+
     const dispatch = useDispatch();
 
     const handleDeleteProcuct = id => {
         dispatch(removeFromCart(id));
+        swal('Oops', 'Product deleted.', 'error');
     }
 
     return (

@@ -1,0 +1,18 @@
+.cart-page tr td{
+    margin: 20px;
+}
+.cart-page{
+    width: 100%;
+}
+
+.cart-page th{
+    text-align: left;
+}
+
+.cart-page {
+  border-collapse: collapse;
+}
+
+.cart-page tbody {
+  border-top: 40px solid white;
+}

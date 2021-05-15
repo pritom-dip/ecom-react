@@ -5,18 +5,32 @@ const cartState = {
 
 export const cartReducer = (state = [], action) => {
     switch (action.type) {
+
+        case actions.GET_CART:
+            const data = sessionStorage.getItem('cart');
+            let newData = [];
+            if (data) {
+                newData = JSON.parse(data)
+            }
+
+            return [
+                ...newData
+            ];
+
         case actions.ADD_TO_CART:
-            const cart = state;
 
             const newItem = action.payload.item;
             const existingProduct = state.find(product => product.id == newItem.id);
+
             if (existingProduct) {
                 const qty = existingProduct.quantity;
-                newItem.quantity = qty + 1;
+                existingProduct.quantity = qty + 1;
             } else {
                 newItem.quantity = 1;
                 state.push(newItem)
             }
+
+            sessionStorage.setItem('cart', JSON.stringify(state));
 
             return [
                 ...state
@@ -26,9 +40,25 @@ export const cartReducer = (state = [], action) => {
             console.log('payload', action.payload);
             const filteredItem = state.filter(product => parseInt(product.id) !== action.payload);
 
+            sessionStorage.setItem('cart', JSON.stringify(filteredItem));
+
             return [
                 ...filteredItem
             ]
+
+        case actions.UPDATE_CART:
+            const updatedItem = state.filter(product => {
+                if (product.id === action.payload.id) {
+                    return product.quantity = parseInt(action.payload.data);
+                }
+            });
+
+            sessionStorage.setItem('cart', JSON.stringify(state));
+
+            return [
+                ...state
+            ];
+
 
         default:
             return state;

@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import SidebarCart from '../SidebarCart/SidebarCart';
 import { FaCartArrowDown } from 'react-icons/fa';
 import { GrSearch } from "react-icons/gr";
+import { getCartsProduct } from '../../store/actions/cartActions';
 
 const Header = () => {
 
     const carts = useSelector(state => state.cart);
     const [active, setActive] = useState(false);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getCartsProduct());
+    }, [dispatch]);
 
     return (
         <>
@@ -51,7 +57,7 @@ const Header = () => {
                                 <li onClick={() => setActive(true)} style={{ marginLeft: '15px' }}>
                                     <div style={{ position: 'relative' }}>
                                         <FaCartArrowDown style={{ color: '#2a2a2a', fontSize: '22px', cursor: 'pointer' }} />
-                                        <span style={{ position: 'absolute', top: '-13px', padding: '0px 8px', border: '100px', background: '#fb774b', color: '#fff' }}>{carts.length}</span>
+                                        <span style={{ position: 'absolute', top: '-13px', padding: '0px 8px', borderRadius: '100px', background: '#fb774b', color: '#fff' }}>{carts.length}</span>
                                     </div>
                                 </li>
                                 <li className="menu-item menu-mobile-nav">
@@ -74,7 +80,7 @@ const Header = () => {
             </div> */}
 
 
-            <SidebarCart active={active} setActive={setActive} />
+            <SidebarCart carts={carts} active={active} setActive={setActive} />
 
         </>
     );

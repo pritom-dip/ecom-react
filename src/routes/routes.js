@@ -2,6 +2,7 @@ import { lazy } from "react";
 
 const Home = lazy(() => import('../pages/Home.page'));
 const NotFound = lazy(() => import('../pages/NotFound.page'));
+const Cart = lazy(() => import('../pages/Cart.page'));
 
 
 export const routes = [
@@ -20,8 +21,15 @@ export const routes = [
         component: Home
     },
     {
-        name: 'Home',
-        private: true,
+        name: 'Cart',
+        private: false,
+        exact: true,
+        path: '/cart',
+        component: Cart
+    },
+    {
+        name: 'Not Found',
+        private: false,
         exact: false,
         path: '/*',
         component: NotFound

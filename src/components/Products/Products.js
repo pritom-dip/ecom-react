@@ -1,26 +1,28 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart } from '../../store/actions/cartActions';
 import { getAllProdcuts } from '../../store/actions/productActions';
 import { getAllUsers } from '../../store/actions/userActions';
+import swal from 'sweetalert';
 
 const Products = () => {
 
     const dispatch = useDispatch();
     const products = useSelector(state => state.products.products);
-    const cart = useSelector(state => state.cart);
 
     useEffect(() => {
         dispatch(getAllProdcuts());
     }, [dispatch]);
 
-    useEffect(() => {
-        dispatch(getAllUsers());
-    }, [dispatch]);
+    // useEffect(() => {
+    //     dispatch(getAllUsers());
+    // }, [dispatch]);
 
     const handleAddCart = product => {
         dispatch(addToCart(product));
+        swal('Product added successfully');
     }
+
 
     return (
         <section className="recent-products mb-5">

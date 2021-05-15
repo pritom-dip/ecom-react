@@ -16,3 +16,19 @@
 .cart-page tbody {
   border-top: 40px solid white;
 }
+a:hover {
+    text-decoration: none;
+}
+
+a{
+    color: #333;
+    cursor: pointer;
+}
+.border-dark-button a:hover{
+    color: #fff !important;
+    
+}
+.icons li a svg{
+    margin-top: -20px;
+    
+}

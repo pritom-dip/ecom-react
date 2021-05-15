@@ -18,7 +18,6 @@ export const cartReducer = (state = [], action) => {
             ];
 
         case actions.ADD_TO_CART:
-
             const newItem = action.payload.item;
             const existingProduct = state.find(product => product.id == newItem.id);
 
@@ -31,7 +30,6 @@ export const cartReducer = (state = [], action) => {
             }
 
             sessionStorage.setItem('cart', JSON.stringify(state));
-
             return [
                 ...state
             ];
@@ -52,14 +50,10 @@ export const cartReducer = (state = [], action) => {
                     return product.quantity = parseInt(action.payload.data);
                 }
             });
-
             sessionStorage.setItem('cart', JSON.stringify(state));
-
             return [
                 ...state
             ];
-
-
         default:
             return state;
     }

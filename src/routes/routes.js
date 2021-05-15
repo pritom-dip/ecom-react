@@ -3,7 +3,7 @@ import { lazy } from "react";
 const Home = lazy(() => import('../pages/Home.page'));
 const NotFound = lazy(() => import('../pages/NotFound.page'));
 const Cart = lazy(() => import('../pages/Cart.page'));
-
+const Checout = lazy(() => import('../pages/Checkout.page'));
 
 export const routes = [
     {
@@ -26,6 +26,13 @@ export const routes = [
         exact: true,
         path: '/cart',
         component: Cart
+    },
+    {
+        name: 'Checkout',
+        private: false,
+        exact: true,
+        path: '/checkout',
+        component: Checout
     },
     {
         name: 'Not Found',

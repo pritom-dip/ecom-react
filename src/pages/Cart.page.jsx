@@ -5,6 +5,7 @@ import Footer from '../components/Footer/Footer';
 import { useDispatch } from 'react-redux';
 import { FaTrashAlt } from "react-icons/fa";
 import { removeFromCart, updateCart } from '../store/actions/cartActions';
+import { Link } from 'react-router-dom';
 
 const Cart = () => {
 
@@ -80,7 +81,8 @@ const Cart = () => {
                             <div className="col-lg-12">
                                 <div className="border-dark-button">
                                     <h5>Grand Total : ${grandTotal}</h5>
-                                    <a href="all-products.html">Proceed to checkout</a>
+                                    <Link to="/checkout">Proceed to checkout</Link>
+                                    {/* <a></a> */}
                                 </div>
                             </div>
                         </div>
